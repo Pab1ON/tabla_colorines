@@ -46,9 +46,10 @@ public class Ej3 extends JFrame {
 		btnDes = new JButton("Deshabilita Central");
 		btnDes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				btnDes.setEnabled(false);
-				btnCentral.setEnabled(false);
-				btnHab.setEnabled(true);
+//				btnDes.setEnabled(false);
+//				btnCentral.setEnabled(false);
+//				btnHab.setEnabled(true);
+				botones();
 			}
 		});
 		contentPane.add(btnDes);
@@ -60,12 +61,19 @@ public class Ej3 extends JFrame {
 		btnHab.setEnabled(false);
 		btnHab.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				btnDes.setEnabled(true);
-				btnCentral.setEnabled(true);
-				btnHab.setEnabled(false);
+//				btnDes.setEnabled(true);
+//				btnCentral.setEnabled(true);
+//				btnHab.setEnabled(false);
+				botones();
 			}
 		});
 		contentPane.add(btnHab);
+	}
+
+	protected void botones() {
+		btnDes.setEnabled(!btnDes.isEnabled());
+		btnCentral.setEnabled(!btnCentral.isEnabled());
+		btnHab.setEnabled(!btnHab.isEnabled());		
 	}
 
 }

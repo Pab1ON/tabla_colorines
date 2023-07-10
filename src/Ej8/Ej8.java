@@ -18,7 +18,7 @@ import java.awt.event.ActionEvent;
 public class Ej8 extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField textNum;
 	private final ButtonGroup buttonGroupF = new ButtonGroup();
 	private final ButtonGroup buttonGroupT = new ButtonGroup();
 
@@ -73,17 +73,10 @@ public class Ej8 extends JFrame {
 		JLabel lblNewLabel = new JLabel("Cantidad:");
 		contentPane.add(lblNewLabel, "cell 0 3,alignx trailing");
 		
-		textField = new JTextField();
-		contentPane.add(textField, "cell 1 3 3 1,growx");
-		textField.setColumns(10);
-		
-		JButton btnCalc = new JButton("Calcular");
-		btnCalc.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				convertir(rdbtnFD,rdbtnFE,rdbtnFY);
-			}
-		});
-		contentPane.add(btnCalc, "cell 1 4 3 1,alignx center");
+		textNum = new JTextField();
+		contentPane.add(textNum, "cell 1 3 3 1,growx");
+		textNum.setColumns(10);
+			
 		
 		JLabel lblNewLabel_2 = new JLabel("A:");
 		contentPane.add(lblNewLabel_2, "cell 0 5,alignx right");
@@ -104,11 +97,33 @@ public class Ej8 extends JFrame {
 		JLabel lblNewLabel_3 = new JLabel("Resultado:");
 		contentPane.add(lblNewLabel_3, "cell 1 6,alignx left");
 		
-		JLabel lblNewRes = new JLabel("€");
-		contentPane.add(lblNewRes, "cell 2 6");
-	}
-	private void convertir(JRadioButton rdbtnFD, JRadioButton rdbtnFE, JRadioButton rdbtnFY) {
-		double num=textField.getText();
+		JLabel lblRes = new JLabel("€");
+		contentPane.add(lblRes, "cell 2 6");
 		
+		JButton btnCalc = new JButton("Calcular");
+		btnCalc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double num=convertir(rdbtnFE,rdbtnFY,rdbtnTE,rdbtnTY);
+				char s=symbol(rdbtnTD,rdbtnTE,rdbtnTY);
+				lblRes.setText(String.format("%f%c", num,s));
+			}
+		});
+		contentPane.add(btnCalc, "cell 1 4 3 1,alignx center");
+	}
+	protected char symbol(JRadioButton rdbtnTD, JRadioButton rdbtnTE, JRadioButton rdbtnTY) {
+		char s=' ';
+		if (rdbtnTD.isSelected()) s='$';
+		if (rdbtnTE.isSelected()) s='€';
+		if (rdbtnTY.isSelected()) s='¥';
+		return s;		
+	}
+
+	private double convertir(JRadioButton rdbtnFE, JRadioButton rdbtnFY,JRadioButton rdbtnTE, JRadioButton rdbtnTY) {
+		double num=Double.parseDouble(textNum.getText());
+		if (rdbtnFE.isSelected() && !rdbtnTE.isSelected()) num=num*1.1;
+		if (rdbtnFY.isSelected() && !rdbtnTY.isSelected()) num=num*0.0070;
+		if (rdbtnTE.isSelected() && !rdbtnFE.isSelected()) num=num*0.91;
+		if (rdbtnTY.isSelected() && !rdbtnFY.isSelected()) num=num*142.36;
+		return num;
 	}
 }

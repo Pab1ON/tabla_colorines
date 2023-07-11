@@ -49,8 +49,8 @@ public class Ej6 extends JFrame {
 		JLabel lblCity = new JLabel("Ciudad:");
 		contentPane.add(lblCity, "cell 1 1,alignx trailing");
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Adamuz", "Cabra", "Córdoba", "Lucena", "Moltanbán", "Montilla", "Monturque"}));
+		JComboBox<String> comboBox = new JComboBox<>();
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Adamuz", "Cabra", "Córdoba", "Lucena", "Moltanbán", "Montilla", "Monturque"}));
 		contentPane.add(comboBox, "cell 2 1,growx");
 		
 		JLabel lblSelect = new JLabel("Has seleccionado:");
@@ -63,14 +63,10 @@ public class Ej6 extends JFrame {
 		btnAcept.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String ciudad=(String) comboBox.getSelectedItem();
-				sacaCiudad(ciudad);
+				lblSelected.setText(ciudad);
 			}
 		});
 		contentPane.add(btnAcept, "cell 2 5,aligny top");
-	}
-	
-	public void sacaCiudad(String ciudad) {
-		lblSelected.setText(ciudad);
 	}
 
 }

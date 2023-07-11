@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class Ej8 extends JFrame {
 
 	private JPanel contentPane;
@@ -58,6 +59,7 @@ public class Ej8 extends JFrame {
 		contentPane.add(lblNewLabel_1, "cell 0 2,alignx right");
 		
 		JRadioButton rdbtnFD = new JRadioButton("Dólares");
+		rdbtnFD.setActionCommand("0");
 		rdbtnFD.setSelected(true);
 		buttonGroupF.add(rdbtnFD);
 		contentPane.add(rdbtnFD, "cell 1 2");
